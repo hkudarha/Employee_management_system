@@ -21,24 +21,25 @@ export const App = () => {
   },[])
   
 // console.log(user)
-  const handleLogin =(email,password) =>{
-    if(email == 'admin@me.com' && password == '123'){
-      setUser('admin')
-      localStorage.setItem('loggedInUser',JSON.stringify({role: 'admin'}))
-    }else if(userData){
-      const employee = userData. find((e) => email ==e.email && e.password==password)
-      if(employee){
-
-        setUser('employee')
-        setLoggedInUserData(employee)
-        localStorage.setItem('loggedInUser',JSON.stringify({role: 'employee', data:employee}))
-      }
-
+const handleLogin = (email, password) => {
+  if (email === 'admin@me.com' && password === '123') {
+    setUser('admin');
+    localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }));
+  } else if (userData) {
+    const employee = userData.find((e) => email === e.email && e.password === password);
+    if (employee) {
+      setUser('employee');
+      setLoggedInUserData(employee);
+      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee', data: employee }));
+    } else {
+      console.log("Employee not found in userData");
+      alert("Invalid user");
     }
-    else{
-      alert("Invalid user")
-    }
+  } else {
+    console.log("No userData available");
+    alert("Invalid user");
   }
+};
 
 
   return (
